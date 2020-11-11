@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
+	<title>Contratos</title>
+	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"></link>
+	<link href="fontawesome/css/all.css" rel="stylesheet" type="text/css" media="all"/>
+	<script type="text/javascript" src="jquery/jquery-3.5.1.js"></script>
+	<script type="text/javascript" src="js/inputMask.js"></script>
+	<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="container" style="min-height: 730px;">
+		<div class="jumbotron" align="center" style="margin-top: 50px;">
+			<h2><i class="fas fa-user-tie"></i> Lista de Fornecedores</h2>
+			<br />
+			<div align="left">
+				<form action="pesquisarFornecedores" method="post">
+					<div class="form-group">
+						<label for="razaoSocial">Razão Social</label> 
+						<input type="text" class="form-control" id="razaoSocial" name="razaoSocial" placeholder="Razão Social" />
+					</div>
+					<div class="form-group">
+						<label for="cnpj">CNPJ</label> 
+						<input type="text" class="form-control" id="cnpj" name="cnpj" placeholder="CNPJ" 
+							maxlength="18" onchange="javascript: fMasc( this, mCNPJ );" oninput="javascript: fMasc( this, mCNPJ );"
+						/>
+					</div>
+					<div class="form-group">
+						<label for="email">E-mail</label> 
+						<input type="email" class="form-control" id="email" name="email" placeholder="E-mail" />
+					</div>					
+					<div class="form-group">
+						<label for="endereco">Endereço</label> 
+						<input type="text" class="form-control" id="endereco" name="endereco" placeholder="Endereço" />
+					</div>
+					<button type="submit" class="btn btn-success">Pesquisar</button>
+				</form>
+				<br/>
+				<p> <i><span th:text="${mensagem}"></span> </i></p>
+			</div>
+			
+			<div align="left">
+				<table class="table table-hover table-sm table-bordered">
+					<thead>
+						<tr>
+							<th>Id</th>
+							<th>Razão Social</th>
+							<th>CNPJ</th>
+							<th>E-mail</th>
+							<th>Telefone</th>
+							<th>Endereço</th>
+						</tr>
+					</thead>
+					<tr th:each="fornecedor : ${fornecedores}">
+						<td><span th:text="${fornecedor.id}"></span></td>
+						<td><span th:text="${fornecedor.razaoSocial}"></span></td>
+						<td><span th:text="${fornecedor.cnpj}"></span></td>
+						<td><span th:text="${fornecedor.email}"></span></td>
+						<td><span th:text="${fornecedor.telefone}"></span></td>
+						<td><span th:text="${fornecedor.endereco}"></span></td>
+					</tr>
+				</table>
+			</div>
+			
+			
+		</div>
+		<a href="gerenciadorContratos" class="btn btn-sm btn-primary" title="Home"><i class="fas fa-home" title="Home"></i> Home</a>
+		
+		
+	</div>
+</body>
+
+<footer class="page-footer font-small pt-4" style="background-color: #e9ecef;margin-top: 20px;" > 
+	<div class="footer-copyright text-center" style="padding-bottom: 2rem;height: 35px !important;">
+		&copy; Gerenciador de Contratos [v0.0.1]
+	</div>
+</footer>
+</html>
